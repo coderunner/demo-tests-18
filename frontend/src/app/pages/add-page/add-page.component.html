@@ -1,0 +1,24 @@
+<h2>Ajouter un livre</h2>
+
+<form [formGroup]="form">
+  <p>Remplissez tous les champs:</p>
+  <div>
+    <label>Titre: </label
+    ><input formControlName="title" data-testid="title-input" />
+  </div>
+  <div>
+    <label>Auteur: </label
+    ><input formControlName="author" data-testid="author-input" />
+  </div>
+  <div>
+    <label>Description: </label
+    ><input formControlName="description" data-testid="description-input" />
+  </div>
+  <div>
+    <label>Nombre de pages: </label
+    ><input formControlName="nbPages" data-testid="nb-pages-input" />
+  </div>
+  <button type="submit" (click)="onAdd()" data-testid="add-button">
+    Ajouter
+  </button>
+</form>

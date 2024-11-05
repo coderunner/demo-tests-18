@@ -1,0 +1,14 @@
+<div>
+    @for (b of books(); track b.id; let last = $last) {
+        <div>
+            <p data-testid="title">Titre: {{ b.title }}</p>
+            <p>Auteur: {{ b.author }}</p>
+            <p>Description: {{ b.description }}</p>
+            <p>Nombre de pages : {{ b.nbPages }}</p>
+            <button (click)="delete(b.id)">Supprimer</button>
+            @if (!last) {
+                <hr />
+            }
+          </div>
+    }
+</div>
