@@ -1,0 +1,28 @@
+stages:
+  - test
+
+test-ng-job:
+  stage: test
+  image: node:20.18.0-alpine3.19
+  before_script:
+    - apk add chromium
+    - export CHROME_BIN=/usr/bin/chromium-browser
+    - export CHROME_PATH=/usr/lib/chromium/
+    - npm install -g @angular/cli
+  script:
+    - cd frontend
+    - npm ci
+    - ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
+
+test-spring-job:
+  stage: test
+  image: eclipse-temurin:21.0.5_11-jdk-alpine
+  before_script:
+    - apk add nodejs npm
+    - npm i -g firebase-tools
+  script:
+    - cd backend
+    - echo $FIREBASE_KEY > firebase-key.json
+    - firebase setup:emulators:firestore
+    - firebase emulators:exec "./gradlew clean test" --token $FIREBASE_TOKEN
+

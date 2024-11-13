@@ -118,7 +118,6 @@ Terminal #3
 ng e2e
 ```
 
-
 # Visual VM and wrk
 
 0. Mise en place
@@ -187,7 +186,17 @@ docker start ID
 docker container ls -a
 ```
 
-# Déploiement
+# CI
+
+Voir exemple sur Gitlab.
+
+Fichier .gitlab-ci.yml
+
+Variables d'environnement: dans Settings - CI/CD - Variables
+
+Token pour l'émulateur: https://firebase.google.com/docs/emulator-suite/install_and_configure#integrate_with_your_ci_system
+
+# Déploiement (TBD)
 
 ## Spring Boot
 
