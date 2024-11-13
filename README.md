@@ -222,13 +222,13 @@ Avec le jib plugin:
 
 Voir le Artifact Registry.
 
-Voir Cloud Run (variable d'environnement)
+Voir Cloud Run (variable d'environnement ALLOWED_ORIGINS pour CORS)
 
 Voir les Journaux
 
 ## Angular
 
-Construire la version production (avec environment.prod.ts)
+Construire la version production (avec environment.ts)
 
 ```
 ng build
