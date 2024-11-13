@@ -152,17 +152,18 @@ Ex: wrk -t12 -c400 -d30s "http://127.0.0.1:8080/books?limit=20"
 
 ## Goulot d'étranglement
 
-1. Montrer les stats
+1. Montrer les stats/threads
 2. Montrer un threaddump (rechercher pour AbstractApiFuture)
 3. Éliminer le goulot
-4. Montrer les stats
+4. Montrer les stats/threads
 
 ## Fuite de mémoire
 
 1. Petit réchauffement
 2. wrk + GC x 2
 3. Voir la tendance de la heap
-4. Heap dump
+4. Heap dump + GC Root
+5. Profiler Heap - org.*
 
 # Docker
 
