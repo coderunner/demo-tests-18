@@ -195,6 +195,8 @@ docker ps
 docker stop ID
 docker start ID
 docker container ls -a
+docker exec -it <name or id> /bin/sh
+docker logs -f <name or id>
 ```
 
 # CI
