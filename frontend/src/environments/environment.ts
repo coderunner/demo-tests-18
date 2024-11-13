@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  backendUrl: 'http://127.0.0.1:8080',
+  backendUrl: 'https://library-350742885760.northamerica-northeast1.run.app',
 };
