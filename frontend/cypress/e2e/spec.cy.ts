@@ -19,8 +19,11 @@ describe('Add books', () => {
     cy.get('[data-testid="more-button"]').click();
     cy.get('[data-testid="order-button"]').click();
 
-    // cy.contains("Supprimer").click();
+    cy.get('[data-testid="title"]').should('have.length', 2);
 
-    // Ajouter des validations
+    cy.contains('Supprimer').click();
+    cy.contains('Supprimer').click();
+
+    cy.get('[data-testid="title"]').should('have.length', 0);
   });
 });

@@ -19,8 +19,13 @@ ng serve
 1. Composant intelligent - ViewPageComponent
 2. Composant de présentation - DisplayBooksComponent
 3. Service - BookService
-4. Couverture - ng test --no-watch --code-coverage
+4. Couverture - ng test --no-watch --code-coverage (Ouvrir le rapport dans /coverage)
 5. Debug - https://angular.dev/guide/testing/debugging
+    - Activer Debug de karma
+    - Ouvrir les outils de développement
+    - Open File (cmd + p) et ouvrir le fichier spec (ex AddPageComponent)
+    - Mettre une break point
+    - Recharger la page
 
 Bien comprendre describe, it, la définition du test, les mock, les spy, le client HTTP de test.
 Option de rouler une seule suite (fdescribe) ou seulement certains tests (fit).
@@ -95,6 +100,11 @@ firebase emulators:exec "./gradlew clean test"
 1. Unit tests
 2. Integration tests
 3. Rapport de couverture dans build/reports/jacoco
+4. Debug
+    - Rouler l'émulateur dans un terminal
+    - Dans un autre terminal, assigner la variable d'enviromment (export FIRESTORE_EMULATOR_HOST=localhost:8181)
+    - Break point + clic droit + Debug Test
+    - Debugger VSCode
 
 # Cypress
 
