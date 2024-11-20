@@ -239,3 +239,96 @@ ng build
 ```
 firebase deploy --only hosting
 ```
+
+# Exemple de test avec Locust (+bug?)
+
+Installer Locust (https://locust.io/).
+
+S'assurer d'utiliser la tâche GET /counter
+
+- Mettre le compteur à 0 (DELETE /counter avec Postman)
+- Exécuter la commande `locust` dans le répertoire `locust`
+- Sur l'interface web utiliser les paramèetres suivant: users -> 1000; ramp -> 100; durée: 60s
+- Comparer le rapport avec un GET sur /counter
+- humm ?
+
+# Surveillance
+
+## Spring Boot Actuator 
+
+Il est possible d'ajouter des endpoints de surveillance sur une serveur Spring Boot.
+
+Dans `build.gradle.kts`, section dependencies, ajouter:
+
+```
+implementation("org.springframework.boot:spring-boot-starter-actuator")
+```
+
+Puis exposer les endpoints de surveillance dans le fichier `application.properties` avec 
+
+```   
+management.endpoints.web.exposure.include=prometheus,health,metrics
+management.endpoint.prometheus.enabled=true
+management.endpoint.health.show-details=always
+```
+
+Voir http://127.0.0.1:8080/actuator
+
+## Métriques avec micrometer
+
+https://micrometer.io/
+
+Ajouter dans `build.gradle.kts`, section dependencies:
+```
+implementation("io.micrometer:micrometer-registry-prometheus")
+```
+
+Voir le code dans le BooksController
+Voir les métriques dans http://127.0.0.1:8080/actuator/metrics
+Voir l'export Prometheus dans http://127.0.0.1:8080/actuator/prometheus
+
+Faire quelques requêtes avec Postman ou UI.
+
+Voir les métriques/compteurs:
+
+http_server_requests_seconds_count
+org_inf5190_library_books_BooksController_get_seconds
+
+Voir la gauge
+jvm_memory_committed_bytes
+
+## Prometheus
+
+- Démarrer l'instance avec le fichier de config dans le dossier /prometheus
+
+Exemple
+```
+./prometheus --config.file ../demo-tests-18/prometheus/prometheus.yml
+```
+
+- Voir http://localhost:9090/
+- Faire quelques requêtes, puis voir les résultats.
+- Exemple de requête prometheus
+
+`http_server_requests_seconds_count{status="200", method="GET",uri=~"/books"}` (dernière valeur)
+vs
+`http_server_requests_seconds_count{status="200", method="GET",uri=~"/books"}[1m]` (sur la dernière minute, donc 4 valeurs)
+vs
+vue en mode graph
+
+Puis calcule de taux de requête par seconde:
+`rate(http_server_requests_seconds_count{status="200", method="GET",uri=~"/books"}[1m])`
+
+Puis calcule de temps de réponse moyen
+`rate(http_server_requests_seconds_sum{status="200", method="GET",uri=~"/books"}[1m]) / rate(http_server_requests_seconds_count{status="200", method="GET",uri=~"/books"}[1m])`
+
+Calcule de percentile 
+`histogram_quantile(0.99, sum(rate(org_inf5190_library_books_BooksController_get_seconds_bucket[1m])) by (le))`
+
+Pourquoi le calcule suivant est mauvais:
+`avg(org_inf5190_library_books_BooksController_post_seconds{quantile="0.95"})`
+
+## Grafana
+
+- exécuter : brew services start grafana 
+- login avec le compte admin
