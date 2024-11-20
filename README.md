@@ -330,5 +330,9 @@ Pourquoi le calcule suivant est mauvais:
 
 ## Grafana
 
-- exécuter : brew services start grafana 
-- login avec le compte admin
+Installer grafana en local 
+
+- Démarrer le serveur grafana (sur mac): brew services start grafana 
+- Aller sur http://localhost:3000/
+- Login avec le compte admin (si besoin)
+- Jouer avec les dashboard
