@@ -4,11 +4,10 @@ import { BookService } from '../../services/books.service';
 import { DisplayBooksComponent } from '../../components/display-books/display-books.component';
 
 @Component({
-  selector: 'app-view-page',
-  standalone: true,
-  imports: [DisplayBooksComponent],
-  templateUrl: './view-page.component.html',
-  styleUrl: './view-page.component.css',
+    selector: 'app-view-page',
+    imports: [DisplayBooksComponent],
+    templateUrl: './view-page.component.html',
+    styleUrl: './view-page.component.css'
 })
 export class ViewPageComponent implements OnInit {
   limit = 1;

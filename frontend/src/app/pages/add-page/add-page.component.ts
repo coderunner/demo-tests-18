@@ -3,11 +3,10 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookService } from '../../services/books.service';
 
 @Component({
-  selector: 'app-add-page',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './add-page.component.html',
-  styleUrl: './add-page.component.css',
+    selector: 'app-add-page',
+    imports: [ReactiveFormsModule],
+    templateUrl: './add-page.component.html',
+    styleUrl: './add-page.component.css'
 })
 export class AddPageComponent {
   form;
