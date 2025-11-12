@@ -11,10 +11,10 @@ version = "0.0.1-SNAPSHOT"
 
 jib {
     to {
-        image = "northamerica-northeast1-docker.pkg.dev/test-demo-c06ee/inf5190/book-app"
+        image = "northamerica-northeast1-docker.pkg.dev/fir-deploiement/inf5190/book-app"
         auth {
             username = "_json_key"
-            password = file("firebase-key.json").readText(Charsets.UTF_8)
+            password = file("firebase-production-key.json").readText(Charsets.UTF_8)
         }
     }
 } 

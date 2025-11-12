@@ -37,6 +37,7 @@ out/
 .vscode/
 
 firebase-key.json
+firebase-production-key.json
 .firebaserc
 firebase-debug.log
 firestore-debug.log

@@ -16,13 +16,12 @@ test-ng-job:
 
 test-spring-job:
   stage: test
-  image: eclipse-temurin:21.0.5_11-jdk-alpine
+  image: eclipse-temurin:21-jdk
   before_script:
-    - apk add nodejs npm
+    - apt-get update && apt-get install -y nodejs npm
     - npm i -g firebase-tools
   script:
     - cd backend
     - echo $FIREBASE_KEY > firebase-key.json
     - firebase setup:emulators:firestore
     - firebase emulators:exec "./gradlew clean test" --token $FIREBASE_TOKEN
-

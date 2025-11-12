@@ -89,7 +89,7 @@ public class ITestBooksController {
     @Test
     public void getAllBooks() {
         final String url =
-                UriComponentsBuilder.fromHttpUrl(this.baseMessageUrl).build().toUriString();
+                UriComponentsBuilder.fromUriString(this.baseMessageUrl).build().toUriString();
 
         // getForObject pour recevoir directement un objet
         final Book[] books = restTemplate.getForObject(url, Book[].class);
@@ -100,7 +100,7 @@ public class ITestBooksController {
 
     @Test
     public void getBooksAsc() {
-        final String url = UriComponentsBuilder.fromHttpUrl(this.baseMessageUrl)
+        final String url = UriComponentsBuilder.fromUriString(this.baseMessageUrl)
                 .queryParam("order", "asc").build().toUriString();
 
         // getForEntity pour recevoir la réponse et valider le code de retour ou prendre
@@ -118,7 +118,7 @@ public class ITestBooksController {
 
     @Test
     public void getBooksDesc() {
-        final String url = UriComponentsBuilder.fromHttpUrl(this.baseMessageUrl)
+        final String url = UriComponentsBuilder.fromUriString(this.baseMessageUrl)
                 .queryParam("order", "desc").build().toUriString();
 
         final RequestEntity<Void> request = RequestEntity.get(url)
@@ -137,7 +137,7 @@ public class ITestBooksController {
 
     @Test
     public void getBooksWithLimit() {
-        final String url = UriComponentsBuilder.fromHttpUrl(this.baseMessageUrl)
+        final String url = UriComponentsBuilder.fromUriString(this.baseMessageUrl)
                 .queryParam("limit", "1").build().toUriString();
         final Book[] books = restTemplate.getForObject(url, Book[].class);
         assertThat(books.length).isEqualTo(1);
